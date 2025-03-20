@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
-        
+
         body {
             font-family: 'Playfair Display', serif;
             background: url('https://source.unsplash.com/1600x900/?bookshelf,library') no-repeat center center/cover;
@@ -21,7 +21,7 @@
             margin: 0;
             position: relative;
         }
-        
+
         body::before {
             content: '';
             position: absolute;
@@ -31,50 +31,50 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.4);
         }
-        
+
         .container {
             position: relative;
             width: 80%;
             max-width: 900px;
             padding: 50px;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.9); /* Light beige background */
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(8px);
         }
-        
+
         h1 {
             font-size: 3em;
-            color: #333;
+            color: #b35e34; /* Warm brown for the title */
             margin-bottom: 20px;
         }
-        
+
         p {
             font-size: 1.5em;
             margin: 20px 0;
-            color: #555;
+            color: #6e4b3a; /* Warm, earthy brown color */
         }
-        
+
         .buttons {
             margin-top: 30px;
         }
-        
+
         .btn {
             display: inline-block;
             padding: 15px 30px;
             font-size: 20px;
             font-weight: bold;
             color: #fff;
-            background: #ff6347;
+            background: #e67e22; /* Warm fall orange */
             border: none;
             border-radius: 8px;
             cursor: pointer;
             text-decoration: none;
             transition: 0.3s;
         }
-        
+
         .btn:hover {
-            background: #f8b400;
+            background: #f39c12; /* Bright golden yellow for hover */
             transform: scale(1.05);
         }
 
@@ -87,7 +87,7 @@
         }
 
         nav a:hover {
-            color: #f8b400;
+            color: #f39c12;
         }
 
         footer {
@@ -107,7 +107,6 @@
         <div class="buttons">
             <a href="{{ url_for('login') }}" class="btn">Login</a>
             <a href="{{ url_for('register') }}" class="btn">Register</a>
-
         </div>
     </div>
     <footer>
