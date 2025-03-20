@@ -87,6 +87,16 @@
     </style>
 </head>
 <body>
+    <header>
+        <h1>Bookstore</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
     <h1>BookNama</h1>
     <div class="book-container">
         <div class="book">

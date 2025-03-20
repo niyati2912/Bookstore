@@ -5,42 +5,6 @@ body {
     background-color: #f9f9f9;
     color: #333;
 }
-
-h1 {
-    color: #333;
-}
-
-a {
-    color: #007BFF;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-form {
-    margin-top: 20px;
-}
-
-input[type="text"], input[type="email"], input[type="password"] {
-    padding: 8px;
-    margin-bottom: 10px;
-    width: 200px;
-}
-
-input[type="submit"] {
-    padding: 8px 16px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
 header {
     background-color: #8b4513;
     color: #fff;
@@ -48,35 +12,29 @@ header {
     text-align: center;
     font-size: 24px;
 }
-
 nav {
     margin: 20px 0;
     text-align: center;
 }
-
 nav a {
     margin: 0 15px;
     text-decoration: none;
     color: #8b4513;
     font-weight: bold;
 }
-
 nav a:hover {
     text-decoration: underline;
 }
-
 .search-bar {
     text-align: center;
     margin: 20px 0;
 }
-
 .search-bar input[type="text"] {
     padding: 10px;
     width: 300px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-
 .search-bar button {
     padding: 10px;
     border: none;
@@ -85,12 +43,10 @@ nav a:hover {
     border-radius: 5px;
     cursor: pointer;
 }
-
 .genres {
     text-align: center;
     margin: 20px 0;
 }
-
 .genres a {
     margin: 0 10px;
     text-decoration: none;
@@ -99,12 +55,10 @@ nav a:hover {
     border: 1px solid #8b4513;
     border-radius: 5px;
 }
-
 .genres a:hover {
     background-color: #8b4513;
     color: #fff;
 }
-
 .cart-icon {
     position: absolute;
     top: 20px;

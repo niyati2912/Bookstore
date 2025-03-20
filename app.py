@@ -19,6 +19,17 @@ class User(db.Model):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
 
+
+class Book(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    author = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    genre = db.Column(db.String(50), nullable=False)
+
+    def __repr__(self):
+        return f"Book('{self.title}', '{self.author}', '{self.genre}')"
+
 @app.route('/')
 def home():
     return render_template('home.html', title="Home Page", heading="Welcome to the Flask Web App")
@@ -58,6 +69,22 @@ def register():
         return redirect(url_for('login'))
     
     return render_template('register.html')
+
+@app.route('/book/<int:book_id>')
+def book_detail(book_id):
+    book = Book.query.get_or_404(book_id)
+    return render_template('book_detail.html', book=book)
+
+@app.route('/genre/<string:genre>')
+def genre(genre):
+    books = Book.query.filter_by(genre=genre).all()
+    return render_template('genre.html', genre=genre, books=books)
+
+@app.route('/cart')
+def cart():
+    
+    cart_items = [] 
+    return render_template('cart.html', cart_items=cart_items)
 
 @app.route('/api/hello', methods=['GET'])
 def hello_api():

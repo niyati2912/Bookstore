@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Cyberpunk UI</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
         
@@ -82,8 +82,10 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>Login</h1>
+    </header>
+    <div class="container">
         <form method="POST" action="{{ url_for('login') }}">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>

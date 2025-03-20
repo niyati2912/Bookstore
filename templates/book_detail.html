@@ -7,9 +7,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>{{ book['title'] }}</h1>
-    <p><strong>Author:</strong> {{ book['author'] }}</p>
-    <p><strong>Price:</strong> ${{ book['price'] }}</p>
-    <a href="/">Back to Book List</a>
+    <header>
+        <h1>{{ book['title'] }}</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+    <div class="book-details">
+        <p><strong>Author:</strong> {{ book['author'] }}</p>
+        <p><strong>Price:</strong> ${{ book['price'] }}</p>
+        <a href="/">Back to Book List</a>
+    </div>
 </body>
 </html>
