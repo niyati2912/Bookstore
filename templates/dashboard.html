@@ -2,8 +2,117 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.8em;
+        }
+
+        .cart-icon img {
+            cursor: pointer;
+        }
+
+        nav {
+            width: 100%;
+            background-color: #34495e;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            font-size: 1.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        .search-bar {
+            width: 80%;
+            max-width: 500px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 8px 15px;
+            border-radius: 25px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar input {
+            border: none;
+            width: 85%;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .search-bar button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .search-bar input:focus {
+            border: 2px solid #f39c12;
+        }
+
+        .genres {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .genres a {
+            background-color: #2ecc71;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .genres a:hover {
+            background-color: #27ae60;
+            transform: scale(1.05);
+        }
+
+    </style>
 </head>
 <body>
     <header>
@@ -15,7 +124,7 @@
         </div>
     </header>
     <nav>
-        <a href="{{ url_for('home') }}">Home</a>
+        
         <a href="{{ url_for('logout') }}">Logout</a>
     </nav>
     <div class="search-bar">
