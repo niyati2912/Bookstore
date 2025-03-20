@@ -3,19 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Bookstore</title>
+    <title>Cyberpunk Bookstore</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #0d0d0d;
+            color: #00e6e6;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            text-shadow: 0 0 15px cyan;
+            font-size: 3em;
+        }
+
+        .book-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .book {
+            background: rgba(0, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            width: 220px;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 0 15px cyan;
+        }
+
+        .book:hover {
+            background: rgba(0, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .book img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px cyan;
+        }
+
+        .book-title {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .book-author {
+            font-size: 0.9em;
+            color: #99ffff;
+        }
+
+        .book-price {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        .buy-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #00e6e6;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 0 10px cyan;
+            transition: 0.3s;
+        }
+
+        .buy-btn:hover {
+            background: #00cccc;
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Online Bookstore</h1>
-    <ul>
-        {% for book in books %}
-            <li>
-                <a href="{{ url_for('book_detail', book_id=book['id']) }}">
-                    {{ book['title'] }} by {{ book['author'] }} - ${{ book['price'] }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
+    <h1>BookNama</h1>
+    <div class="book-container">
+        <div class="book">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.VqFHu7Hh0qNBud7bWgybqwHaLG&pid=Api&P=0&h=180" alt="Neuromancer">
+            <div class="book-title">Neuromancer</div>
+            <div class="book-author">by William Gibson</div>
+            <div class="book-price">$14.99</div>
+            <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+        
+        <div class="book">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.lKU8fCWneFdTZIgQQbjGEwHaLS&pid=Api&P=0&h=180" alt="Snow Crash">
+            <div class="book-title">Snow Crash</div>
+            <div class="book-author">by Neal Stephenson</div>
+            <div class="book-price">$18.99</div>
+            <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="book">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.jOdpRzlYOixQCtP30_j_fQHaLH&pid=Api&P=0&h=180" alt="Altered Carbon">
+            <div class="book-title">Altered Carbon</div>
+            <div class="book-author">by Richard K. Morgan</div>
+            <div class="book-price">$16.50</div>
+            <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="book">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.euPitGBYK0g55QUZkb8XoQHaLH&pid=Api&P=0&h=180" alt="Ready Player One">
+            <div class="book-title">Ready Player One</div>
+            <div class="book-author">by Ernest Cline</div>
+            <div class="book-price">$12.99</div>
+            <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="book">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.888ZMVYXIylGEL7t6FlvRwHaMS&pid=Api&P=0&h=180" alt="Do Androids Dream of Electric Sheep?">
+            <div class="book-title">Do Androids Dream of Electric Sheep?</div>
+            <div class="book-author">by Philip K. Dick</div>
+            <div class="book-price">$13.99</div>
+            <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="book">
+            <img src="https://m.media-amazon.com/images/I/91dSMhdIzTL.SL1500.jpg" alt="Foundation">
+            <div class="book-title">Foundation</div>
+            <div class="book-author">by Isaac Asimov</div>
+            <div class="book-price">$11.99</div>
+            <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="book">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.J9gJUDUmY_4lNpkUncQohAHaJC&pid=Api&P=0&h=180" alt="Hyperion">
+            <div class="book-title">Hyperion</div>
+            <div class="book-author">by Dan Simmons</div>
+            <div class="book-price">$14.49</div>
+            <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="book">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.dvoCb3gBuZO5QPSB1wfBTwHaLH&pid=Api&P=0&h=180" alt="Ghost in the Shell">
+            <div class="book-title">Ghost in the Shell</div>
+            <div class="book-author">by Masamune Shirow</div>
+            <div class="book-price">$20.99</div>
+            <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+    </div>
 </body>
 </html>
