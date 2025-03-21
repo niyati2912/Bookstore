@@ -12,14 +12,14 @@ app.secret_key = 'your_secret_key'
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #db ko track krta h ye like notifications bhejta h but memory leta h isliye false
-app.config['UPLOAD_FOLDER'] = 'static/uploads' #folder ya file upload
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
+app.config['UPLOAD_FOLDER'] = 'static/uploads' 
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
 
 
-db = SQLAlchemy(app) #object create krra orm object relational mappinh
+db = SQLAlchemy(app) 
 
-# cb create se database create hoga jo mere site.db m jaata h and table create hota 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False) 
@@ -29,7 +29,7 @@ class User(db.Model):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
 
-#books ka ek database table create hua h 
+
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
@@ -40,7 +40,7 @@ class Book(db.Model):
     def __repr__(self):
         return f"Book('{self.title}', '{self.author}', '{self.genre}')"
 
-#ye mughe home page leke jayega like um m home pe gayi toh get hua but agr maine login kiya toh post hua
+
 @app.route('/')
 def home():
     return render_template('home.html', title="Home Page", heading="Welcome to the Flask Web App")
@@ -109,7 +109,7 @@ def cart():
     
     cart_items = []  
     return render_template('cart.html', cart_items=cart_items)
-#rest api data fetch and unka full form represantal state transfer
+
 @app.route('/api/hello', methods=['GET'])
 def hello_api():
     return jsonify(message="Hello, World!")

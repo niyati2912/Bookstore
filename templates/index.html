@@ -3,47 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookstore</title>
+    <title>Cyberpunk Bookstore</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
         body {
-            font-family: 'Playfair Display', serif;
-            background: url('https://source.unsplash.com/1600x900/?bookshelf,library') no-repeat center center/cover;
-            color: #333;
-            padding: 20px;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        header {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #0d0d0d;
+            color: #00e6e6;
             text-align: center;
-            color: #fff;
-            margin-bottom: 40px;
+            padding: 20px;
         }
 
         h1 {
+            text-shadow: 0 0 15px cyan;
             font-size: 3em;
-            text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-            color: #d67d3d; /* Warm goldish color for the title */
-        }
-
-        nav a {
-            color: #fff;
-            margin: 10px;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 1.2em;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        nav a:hover {
-            color: #e76f51; /* Soft autumn orange on hover */
-            text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
 
         .book-container {
@@ -55,80 +30,63 @@
         }
 
         .book {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 255, 255, 0.1);
             padding: 15px;
             border-radius: 12px;
             width: 220px;
             text-align: center;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid #e67e22; /* Soft orange border to enhance fall look */
+            transition: 0.3s;
+            box-shadow: 0 0 15px cyan;
         }
 
         .book:hover {
+            background: rgba(0, 255, 255, 0.3);
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         }
 
         .book img {
             width: 100%;
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px cyan;
         }
 
         .book-title {
             font-size: 1.2em;
             margin: 10px 0;
-            color: #333;
         }
 
         .book-author {
             font-size: 0.9em;
-            color: #777;
+            color: #99ffff;
         }
 
         .book-price {
             font-size: 1.1em;
             font-weight: bold;
-            color: #e76f51; /* Autumn orange color for the price */
+            color: #ffcc00;
         }
 
         .buy-btn {
             display: inline-block;
             margin-top: 10px;
             padding: 10px 15px;
-            background: #e67e22; /* Fall orange color for buttons */
-            color: white;
+            background: #00e6e6;
+            color: black;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            transition: background-color 0.3s;
+            box-shadow: 0 0 10px cyan;
+            transition: 0.3s;
         }
 
         .buy-btn:hover {
-            background-color: #d67d3d; /* Slightly darker orange for hover effect */
-        }
-
-        footer {
-            margin-top: 40px;
-            color: #fff;
-            font-size: 0.9em;
-            text-align: center;
+            background: #00cccc;
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Bookstore</h1>
-        <nav>
-            <a href="{{ url_for('home') }}">Home</a>
-            <a href="{{ url_for('login') }}">Login</a>
-            <a href="{{ url_for('register') }}">Register</a>
-            <a href="{{ url_for('dashboard') }}">Dashboard</a>
-            <a href="{{ url_for('logout') }}">Logout</a>
-        </nav>
-    </header>
     <h1>BookNama</h1>
     <div class="book-container">
         <div class="book">
@@ -195,8 +153,5 @@
             <a href="#" class="buy-btn">Buy Now</a>
         </div>
     </div>
-    <footer>
-        <p>&copy; 2025 BookNama, All Rights Reserved.</p>
-    </footer>
 </body>
 </html>
