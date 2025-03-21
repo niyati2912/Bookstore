@@ -4,32 +4,32 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import os
 
-# Initialize the Flask app and configure the database
+
 app = Flask(__name__)
 
-# Secret key for session management
+
 app.secret_key = 'your_secret_key'
 
-# Database configuration
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #db ko track krta h ye like notifications bhejta h but memory leta h isliye false
+app.config['UPLOAD_FOLDER'] = 'static/uploads' #folder ya file upload
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
 
-# Initialize the database
-db = SQLAlchemy(app)
 
-# User model for the database
+db = SQLAlchemy(app) #object create krra orm object relational mappinh
+
+# cb create se database create hoga jo mere site.db m jaata h and table create hota 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), unique=True, nullable=False)
+    username = db.Column(db.String(100), unique=True, nullable=False) 
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
 
-# Assuming you have a Book model
+#books ka ek database table create hua h 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
@@ -40,12 +40,11 @@ class Book(db.Model):
     def __repr__(self):
         return f"Book('{self.title}', '{self.author}', '{self.genre}')"
 
-# Home route
+#ye mughe home page leke jayega like um m home pe gayi toh get hua but agr maine login kiya toh post hua
 @app.route('/')
 def home():
     return render_template('home.html', title="Home Page", heading="Welcome to the Flask Web App")
 
-# Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -61,14 +60,14 @@ def login():
 
     return render_template('login.html')
 
-# Dashboard route (only accessible for logged-in users)
+
 @app.route('/dashboard')
 def dashboard():
     if 'user' in session:
         return render_template('dashboard.html', username=session['user'])
     return redirect(url_for('login'))
 
-# Register route
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -77,57 +76,55 @@ def register():
         password = request.form['password']
         hashed_password = generate_password_hash(password)
         
-        # Check if the user already exists
+       
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             return 'Username already exists. Please choose a different one.'
         
-        # Create a new user and add to the database
+      
         new_user = User(username=username, email=email, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
-        # Redirect to home page after successful registration
-        return redirect(url_for('home'))  # Redirects to home after registration
+        
+        return redirect(url_for('home'))  
     
     return render_template('register.html')
 
-# Book detail route
+
 @app.route('/book/<int:book_id>')
 def book_detail(book_id):
     book = Book.query.get_or_404(book_id)
     return render_template('book_detail.html', book=book)
 
-# Genre route
+
 @app.route('/genre/<string:genre>')
 def genre(genre):
     books = Book.query.filter_by(genre=genre).all()
     return render_template('genre.html', genre=genre, books=books)
 
-# Cart route
+
 @app.route('/cart')
 def cart():
-    # Assuming you have a way to get the cart items
-    cart_items = []  # Replace with actual cart items retrieval logic
+    
+    cart_items = []  
     return render_template('cart.html', cart_items=cart_items)
-
-# API route for testing
+#rest api data fetch and unka full form represantal state transfer
 @app.route('/api/hello', methods=['GET'])
 def hello_api():
     return jsonify(message="Hello, World!")
 
-# Logout route
 @app.route('/logout')
 def logout():
     session.pop('user', None)
     flash('You have been logged out.', 'info')
     return redirect(url_for('home'))
 
-# Utility function to check allowed file types for uploads
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
-# Route to upload a profile picture (optional, can be added to the dashboard)
+
 @app.route('/upload', methods=['POST'])
 def upload():
     if 'file' not in request.files:
@@ -148,9 +145,8 @@ def upload():
     flash('Allowed file types are: png, jpg, jpeg, gif', 'danger')
     return redirect(request.url)
 
-# Run the app
+
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()  # Create database tables if they don't exist
-
+        db.create_all()  
     app.run(debug=True)

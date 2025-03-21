@@ -106,29 +106,6 @@
             background-color: #e67e22; /* Darker orange */
         }
 
-        .genres {
-            margin-top: 50px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-        }
-
-        .genres a {
-            background-color: #e67e22; /* Fall orange */
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            font-size: 1.2em;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .genres a:hover {
-            background-color: #c4302b; /* Red fall leaves color */
-            transform: scale(1.05);
-        }
-
         .pinterest-links {
             margin-top: 40px;
             display: flex;
@@ -179,7 +156,8 @@
         <h1>Welcome, {{ username }}</h1>
         <div class="cart-icon">
             <a href="{{ url_for('cart') }}">
-                <img src="{{ url_for('static', filename='cart-icon.png') }}" alt="Cart">
+                <img src="{{ url_for('static', filename='cart-icon.png') }}" alt="Cart" width="30" height="30">
+
             </a>
         </div>
     </header>
@@ -195,35 +173,23 @@
         </button>
     </div>
 
-    <div class="genres">
-        <a href="{{ url_for('genre', genre='fiction') }}">Fiction</a>
-        <a href="{{ url_for('genre', genre='non-fiction') }}">Non-Fiction</a>
-        <a href="{{ url_for('genre', genre='mystery') }}">Mystery</a>
-        <a href="{{ url_for('genre', genre='fantasy') }}">Fantasy</a>
-        <a href="{{ url_for('genre', genre='science-fiction') }}">Science Fiction</a>
-    </div>
-
-    <!-- Pinterest Links Section -->
     <div class="pinterest-links">
-        <a href="https://www.pinterest.com/search/pins/?q=fiction%20books" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Pinterest_Logo_2015.svg" alt="Pinterest"> Fiction Books
+        <a href="https://i.pinimg.com/474x/4d/81/7d/4d817d383fbc318a58c45120e02daae3.jpg" target="_blank">
+            <img src="https://i.pinimg.com/474x/4d/81/7d/4d817d383fbc318a58c45120e02daae3.jpg" alt="Pinterest"> Fiction Books
         </a>
         <a href="https://www.pinterest.com/search/pins/?q=non-fiction%20books" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Pinterest_Logo_2015.svg" alt="Pinterest"> Non-Fiction Books
+            <img src="https://i.pinimg.com/474x/2d/11/5a/2d115ae4725d6bf4aebf7be45100d07a.jpg" alt="Pinterest"> Non-Fiction Books
         </a>
         <a href="https://www.pinterest.com/search/pins/?q=mystery%20books" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Pinterest_Logo_2015.svg" alt="Pinterest"> Mystery Books
+            <img src="https://i.pinimg.com/474x/71/be/31/71be31ebb710931cf029581c6b019ae6.jpg" alt="Pinterest"> Mystery Books
         </a>
         <a href="https://www.pinterest.com/search/pins/?q=fantasy%20books" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Pinterest_Logo_2015.svg" alt="Pinterest"> Fantasy Books
+            <img src="https://i.pinimg.com/474x/60/86/09/608609cb613363a4bec0992fd87c1f9f.jpg" alt="Pinterest"> Fantasy Books
         </a>
         <a href="https://www.pinterest.com/search/pins/?q=science%20fiction%20books" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Pinterest_Logo_2015.svg" alt="Pinterest"> Science Fiction Books
+            <img src="https://i.pinimg.com/474x/8c/84/b6/8c84b6890fcf163b2e8e9347f5364b48.jpg" alt="Pinterest"> Science Fiction Books
         </a>
     </div>
 
     <footer>
-        <p>&copy; 2025 BookStore. All Rights Reserved.</p>
-    </footer>
-</body>
-</html>
+        <p>&copy; 2025 BookStore.
