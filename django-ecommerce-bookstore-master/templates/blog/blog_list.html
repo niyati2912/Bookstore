@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- <h1 style="color:red;">IF YOU SEE THIS, DJANGO IS USING THE RIGHT TEMPLATE</h1> -->
+<div class="container mt-4">
+    <h2>Blog Posts</h2>
+    {% if user.is_authenticated %}
+    <a href="{% url 'blog_create' %}" class="btn btn-primary mb-3">Create New Post</a>
+    {% endif %}
+    
+    <a href="{% url 'add_genre' %}" class="btn btn-success btn-block mb-2">Add Genre</a>
+    
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                    <p class="card-text"><small class="text-muted">By {{ post.author }} on {{ post.created_at|date:"F d, Y" }}</small></p>
+                    <a href="{% url 'blog_detail' post.pk %}" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

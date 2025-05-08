@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # my apps,
     'books.apps.BooksConfig',
     'accounts.apps.AccountsConfig',
+    'blog.apps.BlogConfig',  # Add this line
 ]
 
 MIDDLEWARE = [
@@ -121,11 +122,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # requires collectstatic command
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# It’s often the case that there will be multiple directories
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# It's often the case that there will be multiple directories
 # with static files within a project so Python brackets [] , 
 # which denote a list 120 , are typically added here to 
 # accommodate future additions.

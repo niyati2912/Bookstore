@@ -1,0 +1,7 @@
+[
+  {"model": "books.genre", "pk": 1, "fields": {"name": "Fiction", "description": "Fictional books."}},
+  {"model": "books.genre", "pk": 2, "fields": {"name": "Science", "description": "Science and technology books."}},
+  {"model": "books.genre", "pk": 3, "fields": {"name": "History", "description": "Historical books."}},
+  {"model": "books.genre", "pk": 4, "fields": {"name": "Mystery", "description": "Mystery and thriller books."}},
+  {"model": "books.genre", "pk": 5, "fields": {"name": "Fantasy", "description": "Fantasy and magical books."}}
+] 

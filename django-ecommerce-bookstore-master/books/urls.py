@@ -1,6 +1,5 @@
-
 from django.urls import path
-from .views import BooksListView, BooksDetailView, BookCheckoutView, paymentComplete, SearchResultsListView
+from .views import BooksListView, BooksDetailView, BookCheckoutView, paymentComplete, SearchResultsListView, add_genre
 
 
 urlpatterns = [
@@ -9,4 +8,5 @@ urlpatterns = [
     path('<int:pk>/checkout/', BookCheckoutView.as_view(), name = 'checkout'),
     path('complete/', paymentComplete, name = 'complete'),
     path('search/', SearchResultsListView.as_view(), name = 'search_results'),
+    path('add-genre/', add_genre, name='add_genre'),
 ]

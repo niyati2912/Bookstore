@@ -1,0 +1,16 @@
+<div class="col-md-3">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Filter by Genre</h4>
+        </div>
+        <div class="list-group list-group-flush">
+            <a href="{% url 'list' %}" class="list-group-item list-group-item-action {% if not request.GET.genre %}active{% endif %}">All</a>
+            {% for genre in genres %}
+            <a href="{% url 'list' %}?genre={{ genre.name }}" class="list-group-item list-group-item-action {% if request.GET.genre == genre.name %}active{% endif %}">
+                {{ genre.name }}
+                <span class="badge bg-secondary float-end">{{ genre.books.count }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -11,55 +11,87 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
-  <title>Online Bookstore</title>
+  <title>BookNama - Your Online Bookstore</title>
 </head>
 
 <body>
   <!--Nav Bar-->
-  <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'list' %}">Online Bookstore</a>
-    <div class="btn-group dropright">
-      <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{user}}
-      </a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'list' %}">
+      <i class="fas fa-book-reader"></i> BookNama
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'list' %}">Books</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge badge-light">0</span>
+          </a>
+        </li>
+      </ul>
 
-    <!--login conditions -->
-
-      <div class="dropdown-menu">
-        {% if user.is_authenticated %}
-        <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
-        {% else %}
-        <a class="dropdown-item text-secondary" href="{% url 'login' %}">Log In</a>
-        <a class="dropdown-item text-secondary" href="{% url 'signup' %}">Sign Up</a>
-        {% endif %}
+      <!-- Search Form -->
+      <form class="form-inline my-2 my-lg-0 mr-3" action="{% url 'search_results' %}" method="get">
+        <div class="input-group">
+          <input name="q" class="form-control" type="search" placeholder="Search books..." aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-outline-light" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
         </div>
+      </form>
+
+      <!-- User Menu -->
+      <div class="dropdown">
+        <button class="btn btn-outline-light dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown">
+          <i class="fas fa-user"></i> {{ user|default:"Guest" }}
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          {% if user.is_authenticated %}
+            <a class="dropdown-item" href="{% url 'logout' %}">
+              <i class="fas fa-sign-out-alt"></i> Log Out
+            </a>
+          {% else %}
+            <a class="dropdown-item" href="{% url 'login' %}">
+              <i class="fas fa-sign-in-alt"></i> Log In
+            </a>
+            <a class="dropdown-item" href="{% url 'signup' %}">
+              <i class="fas fa-user-plus"></i> Sign Up
+            </a>
+          {% endif %}
+        </div>
+      </div>
     </div>
-    <div class="mx-auto" style="width: 10px;">
-    </div>
+  </nav>
 
-    <!-- search css -->
-    <form class="search" action="{% url 'search_results' %}" method="get">
-      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-      <link rel="stylesheet" href="{% static 'css/base.css' %}">
-      <i class="fas fa-search"></i>
-      <input name="q" class="fas fa-search" type="text" autocomplete="off" placeholder="click to search">
-    </form>
-
-  </nav><br>
-
-
-
-  <div class='container'>
-
-
+  <div class="container mt-4">
     {% block content %}
-
-
     {% endblock content %}
-
-
   </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light mt-5 py-3">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2024 BookNama. All rights reserved.</p>
+    </div>
+  </footer>
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

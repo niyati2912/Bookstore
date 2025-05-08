@@ -1,31 +1,133 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
 
+<!-- Featured Books Section -->
+<div class="jumbotron bg-light">
+    <h2 class="display-4">Welcome to BookNama</h2>
+    <p class="lead">Discover your next favorite book from our curated collection.</p>
+    <hr class="my-4">
+    <div class="row">
+        {% for book in object_list|slice:":3" %}
+        <div class="col-md-4">
+            <div class="card h-100 featured-card">
+                <div class="featured-badge">Featured</div>
+                <img src="{{ book.image_url }}" class="card-img-top" alt="{{ book.title }}" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text">{{ book.description|truncatewords:20 }}</p>
+                    <p class="card-text"><small class="text-muted">By {{ book.author }}</small></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="h5 mb-0">${{ book.price|floatformat:2 }}</span>
+                        <a href="{% url 'detail' book.id %}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
-<hr>
-
-
-<div class="row">
-    {% for each in object_list %}
-    <div class="col">
-        <div class="card" style="width: 13rem;">
-            <img src="{{ each.image_url }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ each.title|slice:":25"}} ...</h5>
-                <p class="card-text">${{ each.price|floatformat:2 }}</p>                
-                {% if each.book_available is True %}
-                <li class="text-primary">Available</li>
-                {% else %}
-                <li class="text-danger">Out of Stock !</li>
-                {% endif %}<br>
-                <a href="{% url 'detail' each.id %}" class="btn btn-primary">View</a>
+<!-- Main Content -->
+<div class="row mt-4">
+    <!-- Genre Filter Sidebar -->
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-filter"></i> Filter by Genre</h5>
+            </div>
+            <div class="p-2">
+                <a href="{% url 'add_genre' %}" class="btn btn-success btn-block mb-2">Add Genre</a>
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="{% url 'list' %}" class="list-group-item list-group-item-action {% if not request.GET.genre %}active{% endif %}">
+                    <i class="fas fa-book"></i> All Books
+                </a>
+                {% for genre in genres %}
+                <a href="{% url 'list' %}?genre={{ genre.name }}" 
+                   class="list-group-item list-group-item-action {% if request.GET.genre == genre.name %}active{% endif %}">
+                    <i class="fas fa-tag"></i> {{ genre.name }}
+                </a>
+                {% endfor %}
             </div>
         </div>
     </div>
-    {% endfor %}
+
+    <!-- Book Grid -->
+    <div class="col-md-9">
+        <div class="row">
+            {% for book in object_list %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ book.image_url }}" class="card-img-top" alt="{{ book.title }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title|slice:":25" }}{% if book.title|length > 25 %}...{% endif %}</h5>
+                        <p class="card-text">
+                            <small class="text-muted">By {{ book.author }}</small>
+                        </p>
+                        <p class="card-text">
+                            {% for genre in book.genres.all %}
+                            <span class="badge badge-info">{{ genre.name }}</span>
+                            {% endfor %}
+                        </p>
+                        <p class="card-text">
+                            <strong>${{ book.price|floatformat:2 }}</strong>
+                        </p>
+                        {% if book.book_available %}
+                        <span class="badge badge-success mb-2">In Stock</span>
+                        {% else %}
+                        <span class="badge badge-danger mb-2">Out of Stock</span>
+                        {% endif %}
+                        <a href="{% url 'detail' book.id %}" class="btn btn-primary btn-block">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info">
+                    No books found in this category.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
+<!-- Recent Blog Posts -->
+<div class="row mt-5">
+    <div class="col-12">
+        <h3 class="mb-4"><i class="fas fa-blog"></i> Latest from Our Blog</h3>
+        <div class="row">
+            {% for post in recent_posts %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.content|truncatewords:20 }}</p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="fas fa-user"></i> {{ post.author }} | 
+                                <i class="fas fa-calendar"></i> {{ post.created_at|date:"F d, Y" }}
+                            </small>
+                        </p>
+                        <a href="{% url 'blog_detail' post.pk %}" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info">
+                    No blog posts available yet.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-3">
+            <a href="{% url 'blog_list' %}" class="btn btn-primary">
+                <i class="fas fa-arrow-right"></i> View All Blog Posts
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock content %}
 
