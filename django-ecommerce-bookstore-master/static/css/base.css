@@ -1,12 +1,47 @@
-/* General Styles */
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
 body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding-top: 80px; /* Increased from 56px to 80px to avoid overlap */
 }
 
+
 .container {
-    flex: 1;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    flex: 1 0 auto;
+}
+
+/* Headings */
+h1 {
+    color: red;
+}
+
+/* Navigation Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
 /* Card Styles */
@@ -28,145 +63,7 @@ body {
     transform: scale(1.05);
 }
 
-/* Navigation Styles */
-.navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.navbar-brand {
-    font-weight: bold;
-    font-size: 1.5rem;
-}
-
-/* Search Form Styles */
-.form-control:focus {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-}
-
-/* Genre Filter Styles */
-.list-group-item.active {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-/* Badge Styles */
-.badge {
-    padding: 0.5em 0.8em;
-    font-weight: 500;
-}
-
-/* Button Styles */
-.btn {
-    border-radius: 4px;
-    font-weight: 500;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-}
-
-/* Footer Styles */
-footer {
-    margin-top: auto;
-    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-}
-
-/* Jumbotron Styles */
-.jumbotron {
-    background-color: #f8f9fa;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Alert Styles */
-.alert {
-    border-radius: 4px;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .card-img-top {
-        height: 150px !important;
-    }
-    
-    .jumbotron {
-        padding: 2rem 1rem;
-    }
-    
-    .display-4 {
-        font-size: 2.5rem;
-    }
-}
-
-h1 {
-    color: red;
-}
-
-*{
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    box-sizing: border-box;
-}
-
-body{
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-}
-
-.search{
-    position: relative;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    line-height: 55px;
-    background: rgb(16, 141, 190);
-    border-radius: 30px;
-    overflow: hidden;
-    transition: .8s;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-}
-
-.search:hover{ width: 300px;}
-
-.search:hover i{
-    position: absolute;
-    right: 15px;
-    top: 12px;
-    cursor: pointer;
-}
-
-.search:hover input{
-    display: block;
-    position: absolute;
-    background: transparent;
-    color: #fff;
-    height: 32px;
-    font-size: larger;
-    top: 8px;
-    left: 20px;
-    width: 230px;
-}
-
-.search input{ display: none; }
-
-.search i{
-    color: #fff;
-    font-size: 22px;
-}
-
-/* Featured Card Styles */
+/* Featured Card */
 .featured-card {
     position: relative;
     border: 2px solid #007bff;
@@ -185,7 +82,49 @@ body{
     z-index: 1;
 }
 
-/* Shopping Cart Styles */
+/* Buttons */
+.btn {
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+}
+
+/* Jumbotron */
+.jumbotron {
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 2rem;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Badges */
+.badge {
+    padding: 0.5em 0.8em;
+    font-weight: 500;
+}
+
 .nav-link .badge {
     position: relative;
     top: -8px;
@@ -194,8 +133,81 @@ body{
     font-size: 0.75rem;
 }
 
-/* Price Styles */
+/* Price */
 .h5.mb-0 {
     color: #28a745;
     font-weight: bold;
+}
+
+/* Form Control Focus */
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* Genre Filter */
+.list-group-item.active {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 150px !important;
+    }
+
+    .jumbotron {
+        padding: 2rem 1rem;
+    }
+
+    .display-4 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Search Box */
+.search {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 55px;
+    background: rgb(16, 141, 190);
+    border-radius: 30px;
+    overflow: hidden;
+    transition: 0.8s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.search:hover {
+    width: 300px;
+}
+
+.search:hover i {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    cursor: pointer;
+}
+
+.search:hover input {
+    display: block;
+    position: absolute;
+    background: transparent;
+    color: #fff;
+    height: 32px;
+    font-size: larger;
+    top: 8px;
+    left: 20px;
+    width: 230px;
+}
+
+.search input {
+    display: none;
+}
+
+.search i {
+    color: #fff;
+    font-size: 22px;
 }

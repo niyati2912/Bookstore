@@ -1,16 +1,74 @@
-<div class="col-md-3">
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <h4 class="mb-0">Filter by Genre</h4>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Genre Filter Sidebar -->
+        <div class="col-md-3 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">Filter by Genre</h4>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="{% url 'list' %}" class="list-group-item list-group-item-action {% if not request.GET.genre %}active{% endif %}">All</a>
+                    {% for genre in genres %}
+                    <a href="{% url 'list' %}?genre={{ genre.name }}" class="list-group-item list-group-item-action {% if request.GET.genre == genre.name %}active{% endif %}">
+                        {{ genre.name }}
+                        <span class="badge bg-secondary float-end">{{ genre.books.count }}</span>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-        <div class="list-group list-group-flush">
-            <a href="{% url 'list' %}" class="list-group-item list-group-item-action {% if not request.GET.genre %}active{% endif %}">All</a>
-            {% for genre in genres %}
-            <a href="{% url 'list' %}?genre={{ genre.name }}" class="list-group-item list-group-item-action {% if request.GET.genre == genre.name %}active{% endif %}">
-                {{ genre.name }}
-                <span class="badge bg-secondary float-end">{{ genre.books.count }}</span>
-            </a>
-            {% endfor %}
+
+        <!-- Book List -->
+        <div class="col-md-9">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for book in book_list %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        {% if book.image_url %}
+                        <div class="book-image-container">
+                            <img src="{{ book.image_url }}" class="card-img-top" alt="{{ book.title }}" style="height: 300px; object-fit: cover;">
+                        </div>
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-truncate">{{ book.title }}</h5>
+                            <p class="card-text text-muted mb-2">By {{ book.author }}</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <span class="h5 mb-0">${{ book.price|floatformat:2 }}</span>
+                                <div class="badge bg-success">In Stock</div>
+                            </div>
+                            <a href="{% url 'detail' book.pk %}" class="btn btn-primary mt-3">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-info text-center">
+                        No books found.
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
+
+<style>
+    .book-image-container {
+        height: 300px;
+        overflow: hidden;
+    }
+    .card {
+        transition: transform 0.2s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+    .badge {
+        font-size: 0.8rem;
+    }
+</style>
+{% endblock %}
